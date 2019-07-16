@@ -126,6 +126,7 @@ class TestSwapi(object):
 
     # Parse JSON methods
     def parseActualFields(self, json):
+        #Parses json and returns the fields (keys) (not the corresponding data)
         utils.log()
         actual_fields = []
         try:
@@ -142,7 +143,7 @@ class TestSwapi(object):
             assert 0, self.KEYERROR
 
     def parseResultsZero(self, response):
-        #Parses json and returns the "results" data.
+        #Parses json and returns the first item in the "results" data.
         try:
             results = response.json()[self.RESULTS][0]
             utils.log("parse Results: ")
@@ -154,6 +155,7 @@ class TestSwapi(object):
             assert 0, self.KEYERROR
 
     def parseResultsAll(self, response):
+        #Parses json and returns all items in the results data.
         utils.log()
         try:
             results = response.json()[self.RESULTS]
@@ -167,6 +169,7 @@ class TestSwapi(object):
 
 
     def parseName(self, response):
+        #Parses json and returns the data from the name field.
         name = response.json()[self.NAME]
         utils.log(name)
         return name
@@ -222,6 +225,7 @@ class TestSwapi(object):
         return False
 
     def doesListContainAllElementsOfList(self, small_list, large_list):
+        # Check if the elements of a smaller list are contained in the larger list.
         result = all(elem in large_list for elem in small_list)
 
         return result
@@ -233,6 +237,7 @@ class TestSwapi(object):
 
 #  Other helper methods
     def extractFilmNumber(self, film_urls):
+        # Extract the film number from the end of the film URL
         film_numbers = []
 
         for film in film_urls:
